@@ -13,10 +13,8 @@ namespace Katas.CodeKatas
          * 
          * If it can't be found then return -1
          */
-        public int ChopIterative(List<int> sortedList, int value)
+        public static int ChopIterative(List<int> sortedList, int value)
         {
-            if (sortedList.Count == 0) { return -1; }
-
             var minNumber = 0;
             var maxNumber = sortedList.Count - 1;
             
@@ -38,6 +36,31 @@ namespace Katas.CodeKatas
                 {
                     minNumber = middleValue + 1;
                 }
+            }
+
+            return -1;
+        }
+
+        public static int ChopRecursively(List<int> sortedList, int value, int? minNumber, int? maxNumber)
+        {
+
+            if (sortedList.Count == 0)
+                return -1;
+
+            var startIndex = (int)(minNumber != null ? minNumber : 0);
+            var endIndex = (int)(maxNumber != null ? maxNumber : sortedList.Count - 1);
+
+            if (startIndex <= endIndex)
+            {
+                var middleValue = startIndex + (endIndex - startIndex) / 2;
+
+                if (sortedList[middleValue] == value)
+                    return middleValue;
+
+                if (sortedList[middleValue] > value)
+                    return ChopRecursively(sortedList, value, minNumber, middleValue - 1);
+
+                return ChopRecursively(sortedList, value, middleValue + 1, endIndex);
             }
 
             return -1;
