@@ -43,10 +43,6 @@ namespace Katas.CodeKatas
 
         public static int ChopRecursively(List<int> sortedList, int value, int? minNumber, int? maxNumber)
         {
-
-            if (sortedList.Count == 0)
-                return -1;
-
             var startIndex = (int)(minNumber != null ? minNumber : 0);
             var endIndex = (int)(maxNumber != null ? maxNumber : sortedList.Count - 1);
 
