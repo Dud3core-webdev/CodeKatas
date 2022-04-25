@@ -2,17 +2,26 @@
 
 namespace Katas.CodeKatas
 {
+    /** 
+     * The binary Chop is used to sort through an ordered list 
+     * and find the position of a target element. 
+     * 
+     * This example takes a list of integers, allows the user to find the 
+     * index of a given value in the list. 
+     * 
+     * If it can't be found then return -1
+     */
+
     public sealed class BinarySearchService
     {
-        /** 
-         * The binary Chop is used to sort through an ordered list 
-         * and find the position of a target element. 
+        /**
+         * Binary Sort/Chop using iteration. 
+         * Looping over the same code again and agaib while 
+         * The min number is lesser than or equal to the max number
          * 
-         * This example takes a list of integers, allows the user to find the 
-         * index of a given value in the list. 
-         * 
-         * If it can't be found then return -1
-         */
+         * NOTE: This method assumes that you are starting the chop
+         * From the start and end of the List. 
+        */
         public static int ChopIterative(List<int> sortedList, int value)
         {
             var minNumber = 0;
@@ -41,6 +50,14 @@ namespace Katas.CodeKatas
             return -1;
         }
 
+        /** 
+         * Binary Search/Chop using recursion. 
+         * 
+         * Recall the method every time the result is not found in the List. 
+         * This method needs a start and an end index to search against. 
+         * 
+         * The yielded result is the same as the iteration. 
+         */ 
         public static int ChopRecursively(List<int> sortedList, int value, int? minNumber, int? maxNumber)
         {
             var startIndex = (int)(minNumber != null ? minNumber : 0);
